@@ -2,7 +2,7 @@ import React from 'react'
 
 function movies() {
   return (
-    <div>movies</div>
+    <div className="h-screen flex justify-center items-center">movies</div>
   )
 }
 

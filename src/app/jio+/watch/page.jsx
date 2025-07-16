@@ -2,7 +2,7 @@ import React from 'react'
 
 function jioPlus() {
   return (
-    <div>jioPlus</div>
+    <div className="h-screen flex justify-center items-center">jioPlus</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div>subscription</div>
+    <div className="h-screen flex justify-center items-center">subscription</div>
   )
 }
 
