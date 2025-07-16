@@ -1,21 +1,30 @@
+"use client"
+
 import Image from "next/image"
 import { Search, Crown, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
+// ✅ You forgot this function wrapper before
 export default function Header() {
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Movies", href: "/movies/watch" },
-    { name: "TV Shows", href: "/tv-shows/watch" },
-    { name: "Watchlist", href: "/watchlist" },
-    { name: "Jio+", href: "/jio+/watch" },
-  ]
+  const path = usePathname();
+  const activeTabKey = path.split("/")[1];
+  console.log("active tab key -", activeTabKey);
+
+  const navLinks = [
+    { name: "Home", key: "", href: "/" },
+    { name: "Movies", key: "movies", href: "/movies/watch" },
+    { name: "Tv Shows", key: "tv-shows", href: "/tv-shows/watch" },
+    { name: "Watchlist", key: "watchlist", href: "/watchlist" },
+    { name: "Jio+", key: "jio+", href: "/jio+/watch" },
+  ];
 
   return (
     <header className="bg-black text-white top-0 z-50 fixed border-b border-gray-800 w-screen">
+       
       <div className="flex items-center justify-between px-4 py-3 max-w-screen mx-auto ">
         {/* Logo and Premium Button */}
         <div className="flex items-center gap-5 ">
@@ -49,11 +58,14 @@ export default function Header() {
         </Link>
          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8  ">
-            {navItems.map((item) => (
+            {navLinks.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
+                className={`px-1 py-2 font-medium text-[#b6b8b8] hover:text-white ${activeTabKey === item.key
+                ? "border-b-2 border-pink-500 text-white"
+                : ""
+                } `}
               >
                 {item.name}
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-pink-600 transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
@@ -121,7 +133,7 @@ export default function Header() {
                 </div>
 
                 <nav className="flex flex-col space-y-4">
-                  {navItems.map((item) => (
+                  {navLinks.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -138,5 +150,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
