@@ -1,3 +1,6 @@
+import axios from "axios";
+import { resolve } from "styled-jsx/css";
+
 export const ENDPOINT = {
     // auth
     login: "/auth/login",
@@ -50,3 +53,13 @@ export const ENDPOINT = {
 export const media = (path) => `https://image.tmdb.org/t/p/original` + path;
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+export const api = axios.create({
+    baseURL: API_BASE_URL
+})
+
+export async function getBannerData(){
+    const resp = await api.get(ENDPOINT.discoverUpcoming);
+    const data = resp?.data;
+    return data;
+}

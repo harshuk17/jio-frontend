@@ -8,7 +8,7 @@ function JumperSection({list}) {
             list.map((item)=>(
                 <Link 
                     key={item.href}
-                    className='px-5 py-3 rounded-xl text-sm bg-amber-200'
+                    className='px-5 py-3 rounded-3xl text-sm border-2 bg-gray-800 hover:border-pink-500 '
                     href={`#${item.href}`}
                 >
                     {item.label}

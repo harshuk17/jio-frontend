@@ -2,20 +2,36 @@ import BannerSection from "@/components/sections/BannerSection";
 import CategoriesSection from "@/components/sections/CategoriesSection";
 import JumperSection from "@/components/sections/JumperSection";
 import Image from "next/image";
+import { api, ENDPOINT } from "@/lib/api";
 
 export default function Home() {
   const list = [
     {
       label:"Top Rated",
-      href:"topRated"
+      href:"topRated",
+      fetcher: async function getTopRatedData(){
+        const response = await api.get(ENDPOINT.discoverTrending);
+        const data = response?.data?.homeList?.results;
+        return data;
+      }
     },
     {
       label:"Popular",
-      href:"popular"
+      href:"popular",
+      fetcher: async function getPopularData(){
+        const response = await api.get(ENDPOINT.discoverNowPlaying);
+        const data = response?.data?.homeList?.results;
+        return data;
+      }
     },
     {
       label:"Upcoming",
-      href:"upcoming"
+      href:"upcoming",
+      fetcher: async function getUpcomingData(){
+        const response = await api.get(ENDPOINT.discoverUpcoming);
+        const data = response?.data?.homeList?.results;
+        return data;
+      }
     }
   ]
   return (
@@ -24,7 +40,7 @@ export default function Home() {
       <BannerSection/>
       {
         list.map((item)=>{
-          return <CategoriesSection key={item.label} title={item.label} id={item.href}/>
+          return <CategoriesSection key={item.label} title={item.label} id={item.href} fetcher={item.fetcher}/>
         })
       }
     </div>
