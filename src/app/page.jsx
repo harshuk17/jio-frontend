@@ -33,11 +33,16 @@ export default function Home() {
         return data;
       }
     }
-  ]
+  ];
+    async function getBannerData(){
+    const resp = await api.get(ENDPOINT.discoverUpcoming);
+    const data = resp?.data?.homeList.results;
+    return data;
+}
   return (
     <div className=" ">
       <JumperSection list={list}/>
-      <BannerSection/>
+      <BannerSection fetcher={getBannerData}/>
       {
         list.map((item)=>{
           return <CategoriesSection key={item.label} title={item.label} id={item.href} fetcher={item.fetcher}/>

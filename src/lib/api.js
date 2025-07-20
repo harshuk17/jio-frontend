@@ -58,8 +58,3 @@ export const api = axios.create({
     baseURL: API_BASE_URL
 })
 
-export async function getBannerData(){
-    const resp = await api.get(ENDPOINT.discoverUpcoming);
-    const data = resp?.data;
-    return data;
-}

@@ -1,13 +1,16 @@
 import React, { Suspense } from 'react'
 import { Skeleton } from '../atom/skeleton'
-
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { media } from '@/lib/api';
+import { InboxIcon } from 'lucide-react';
 
 function CategoriesSection({ title, id , fetcher}) {
   return (
     <div className='px-8 py-5'>
       <h2 className='mb-2 text-xl scroll-mt-24' id={id}>{title}</h2>
-      <Suspense fallback={<CategoriesFallback/>}>
-          <CategoriesContent fetcher={fetcher}/>
+      <Suspense fallback={<CategoriesFallback />}>
+      <CategoriesContent fetcher={fetcher} />
       </Suspense>
     </div>
   )
@@ -17,12 +20,34 @@ async function CategoriesContent({fetcher}){
     console.log("fetcher is not provided");
   }
   const data = await fetcher();
-  console.log(data);
+  // console.log(data);
+
+  if(!data || data.length===0){
+    return<>
+      <div className='flex flex-col items-center justify-center w-full h-[300px] py-12'>
+        <InboxIcon
+          className='w-32 h-32 text-slate-400 mb-10'
+          strokeWidth={1.2}
+        >
+          <p className='text-lg text-gray-400'>No items found</p>
+        </InboxIcon>
+      </div>
+    </>
+  }
   return (
     <ul className='flex gap-4 w-full overflow-scroll scrollbar-hide'>
       {
         data.map((item)=>(
-          <li className='min-w-[200px] h-[300px] rounded-lg border-2 ' key={item.id}>{item.title||item.original_name}</li>
+          <li className='min-w-[200px] h-[300px] rounded-lg  ' key={item.id}>
+           <Image
+              src={media(item?.poster_path)}
+              alt=""
+              width={700}
+              height={500}
+              className="w-full h-full bg-scale-600 rounded-lg object-cover"
+              quality={100}
+           ></Image> 
+          </li>
         ))
       }
     </ul>

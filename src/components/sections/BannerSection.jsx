@@ -1,5 +1,7 @@
 import { getBannerData } from '@/lib/api'
 import React, { Suspense } from 'react'
+import Image from 'next/image';
+import { media } from '@/lib/api';
 import {
   Carousel,
   CarouselContent,
@@ -8,15 +10,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-async function BannerSection() {
+async function BannerSection({fetcher}) {
 
   return (
-  <BannerSectionContent/>
+  <BannerSectionContent fetcher={fetcher}/>
   )
 }
-async function  BannerSectionContent(){
-  const data= await getBannerData();
-  const bannerList = data.homeList.results;
+async function  BannerSectionContent({fetcher}){
+  const data= await fetcher();
+  // const bannerList = response?.data?.TvList?.results;
+
   return (
     <>
       <Carousel
@@ -28,9 +31,19 @@ async function  BannerSectionContent(){
       >
           <CarouselContent className="-ml-4 pl-8 pr-8">
             {
-              bannerList?.map((vid)=>(
+              data?.map((vid)=>(
                 <CarouselItem key={vid.id} className="max-w-[700px] h-[500px] border-2 basis-1/3 md:basis-1/2 pl-4">
-                    <h2>{vid.title}</h2>
+                    {/* <h2>{vid.title||vid.original_name}</h2> */}
+                    <Image
+                      src={media(vid?.poster_path)}
+                      alt=""
+                      width={700}
+                      height={500}
+                      className="w-full h-full bg-scale-600 rounded-lg object-cover"
+                      quality={30}
+                      >
+
+                    </Image>
                 </CarouselItem>
               ))
             }
