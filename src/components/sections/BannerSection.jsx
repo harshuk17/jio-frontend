@@ -32,15 +32,15 @@ async function  BannerSectionContent({fetcher}){
           <CarouselContent className="-ml-4 pl-8 pr-8">
             {
               data?.map((vid)=>(
-                <CarouselItem key={vid.id} className="max-w-[700px] h-[500px] border-2 basis-1/3 md:basis-1/2 pl-4">
+                <CarouselItem key={vid.id} className="max-w-[700px] h-[500px]  basis-1/3 md:basis-1/2 pl-4">
                     {/* <h2>{vid.title||vid.original_name}</h2> */}
                     <Image
                       src={media(vid?.poster_path)}
                       alt=""
-                      width={700}
-                      height={500}
-                      className="w-full h-full bg-scale-600 rounded-lg object-cover"
-                      quality={30}
+                      width={500}
+                      height={300}
+                      className="w-[700px] h-[700px] bg-scale-6 00 rounded-lg object-cover"
+                      quality={100}
                       >
 
                     </Image>
@@ -49,8 +49,8 @@ async function  BannerSectionContent({fetcher}){
             }
           </CarouselContent>
           <div>
-            <CarouselPrevious className="h-[60px] w-[60px] ml-25"/>
-            <CarouselNext className="h-[60px] w-[60px] mr-25"/>
+            <CarouselPrevious className="h-[60px] w-[60px] ml-25 bg-black "/>
+            <CarouselNext className="h-[60px] w-[60px] mr-25 bg-black"/>
           </div>
 
       </Carousel>

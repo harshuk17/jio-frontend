@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import ProfileSheet from "./ProfileSheet"
 
 // ✅ You forgot this function wrapper before
 export default function Header() {
@@ -94,13 +95,7 @@ export default function Header() {
 
           {/* Profile Avatar */}
           <div className="w-8 h-8 rounded-full overflow-hidden">
-            <Image
-              src="/avatar.svg"
-              alt="User Profile"
-              width={32}
-              height={32}
-              className="w-full h-full object-cover"
-            />
+            <ProfileSheet/>
           </div>
 
           {/* Mobile Menu */}

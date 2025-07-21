@@ -1,0 +1,88 @@
+import React, { useState } from 'react'
+import Image from "next/image"; // ✅ Correct
+import { ChevronRight , SquareArrowOutUpRight} from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import Link from 'next/link';
+
+  const navLinks = [
+    { name: "Home", key: "", href: "/" },
+    { name: "Movies", key: "movies", href: "/movies/watch" },
+    { name: "Tv Shows", key: "tv-shows", href: "/tv-shows/watch" },
+    { name: "Watchlist", key: "watchlist", href: "/watchlist" },
+    { name: "Jio+", key: "jio+", href: "/jio+/watch" },
+  ];
+
+function ProfileSheet() {
+    const [open,setOpen]=useState(false);
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger className="w-8 h-8 ">
+            <Image
+              src="/avatar.svg"
+              alt="User Profile"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+            />
+            {/* profile */}
+        </SheetTrigger>
+        <SheetContent side={"right"} className="px-6 bg-black h-screen w-[25rem] p-6  flex flex-col">
+            <div className='flex flex-col items-center justify-center border-2 bg-gray-900 rounded-3xl mt-[80px] h-[180px] relative'>
+            <Image
+              src="/avatar.svg"
+              alt="User Profile"
+              width={40}
+              height={40}
+              className="w-[80px] h-[80px] object-cover mt-15 absolute top-0 -translate-y-25 "
+            />
+            <p className='text-xl font-bold'>Guest</p>
+            <Link 
+                href="/login"
+                onClick={()=>{
+                    setOpen(false);
+                }}
+                className="mt-5 border bg-pink-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
+            >
+                Login
+            </Link>
+            </div>
+            <div className='flex flex-col '>
+                <Link className='flex justify-between' href='/subscription' onClick={()=>{
+                    setOpen(false);
+                }}>Subscribe Now    <ChevronRight /></Link>
+                <hr className="border-gray-600 my-5" />
+            {
+                navLinks.map((item)=>(
+                    <Link
+                        key={item.name}
+                        href={item.href}
+                        className='px-1.5 py-2 flex justify-between'
+                        onClick={()=>{
+                            setOpen(false);
+                        }}
+                    >
+                        {item.name}
+                        <SquareArrowOutUpRight className='h-4'/>
+                    </Link>
+                ))
+            }
+            <hr className="border-gray-600 my-5" />
+            <Link className='flex justify-between' onClick={()=>{
+                setOpen(false);
+            }}
+            href='/'>Help and Legal <ChevronRight /></Link>
+            </div>
+        </SheetContent>
+    </Sheet>
+  )
+}
+
+export default ProfileSheet

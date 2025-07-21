@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Fotter";
+import Header from "@/components/sections/Header";
+import Footer from "@/components/sections/Fotter";
 import { Inter } from "next/font/google";
 const inter = Inter({subsets:["latin"]})
 
