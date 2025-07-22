@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 // import { useState } from "react";
 import {
   Card,
@@ -27,7 +28,11 @@ export default function CardDemo() {
           Enter your email below to login to your account
         </CardDescription>
         <CardAction>
+          <Link  href=
+          "/signup">
           <Button variant="link" className='border bg-pink-400 text-black hover:bg-pink-300 font-semibold'>Sign Up</Button>
+          
+          </Link>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -40,6 +45,7 @@ export default function CardDemo() {
                 type="email"
                 placeholder="m@example.com"
                 required
+                
               />
             </div>
             <div className="grid gap-2">
