@@ -4,6 +4,7 @@ import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Fotter";
 import { Inter } from "next/font/google";
 const inter = Inter({subsets:["latin"]})
+import StoreProvider from "@/provider/storeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className}antialiased bg-background text-foreground`}
       >
-        <Header></Header>
-        {children}
-        <Footer></Footer>
+        <StoreProvider>
+          <Header></Header>
+          {children}
+          <Footer></Footer>
+        </StoreProvider>
       </body>
     </html>
   );

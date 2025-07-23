@@ -43,7 +43,7 @@ export default function Header() {
                 // className="invert"
               />
             </div>
-            <span className="text-xl font-semibold">JioCinema</span>
+            <span className="text-xl font-semibold ml-1">JioCinema</span>
             </Link>
           </div>
         <Link

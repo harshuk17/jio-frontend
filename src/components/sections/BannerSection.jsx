@@ -32,14 +32,14 @@ async function  BannerSectionContent({fetcher}){
           <CarouselContent className="-ml-4 pl-8 pr-8">
             {
               data?.map((vid)=>(
-                <CarouselItem key={vid.id} className="max-w-[700px] h-[500px]  basis-1/3 md:basis-1/2 pl-4">
+                <CarouselItem key={vid.id} className="max-w-[500px] h-[500px]  basis-1/3 md:basis-1/2 pl-4">
                     {/* <h2>{vid.title||vid.original_name}</h2> */}
                     <Image
                       src={media(vid?.poster_path)}
                       alt=""
                       width={500}
                       height={300}
-                      className="w-[700px] h-[700px] bg-scale-6 00 rounded-lg object-cover"
+                      className="w-[500px] h-[700px] bg-scale-6 00 rounded-lg object-cover"
                       quality={100}
                       >
 
