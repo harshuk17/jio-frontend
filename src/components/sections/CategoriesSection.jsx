@@ -2,8 +2,10 @@ import React, { Suspense } from 'react'
 import { Skeleton } from '../atom/skeleton'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { media } from '@/lib/api';
+import { getWatchUrl, media } from '@/lib/api';
 import { InboxIcon } from 'lucide-react';
+import Link from 'next/link';
+// import { getWatchUrl } from '@/lib/api';
 
 function CategoriesSection({ title, id , fetcher}) {
   return (
@@ -39,6 +41,7 @@ async function CategoriesContent({fetcher}){
       {
         data.map((item)=>(
           <li className='min-w-[200px] h-[300px] rounded-lg  ' key={item.id}>
+            <Link href={getWatchUrl(item.id,item.media_type)} key={item.id}>
            <Image
               src={media(item?.poster_path)}
               alt=""
@@ -46,7 +49,9 @@ async function CategoriesContent({fetcher}){
               height={500}
               className="w-full h-full bg-scale-600 rounded-lg object-cover"
               quality={100}
+              key={item.id}
            ></Image> 
+            </Link>
           </li>
         ))
       }

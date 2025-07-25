@@ -1,4 +1,4 @@
-import { getBannerData } from '@/lib/api'
+import { getBannerData, getWatchUrl } from '@/lib/api'
 import React, { Suspense } from 'react'
 import Image from 'next/image';
 import { media } from '@/lib/api';
@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Link from 'next/link';
 
 async function BannerSection({fetcher}) {
 
@@ -34,6 +35,7 @@ async function  BannerSectionContent({fetcher}){
               data?.map((vid)=>(
                 <CarouselItem key={vid.id} className="max-w-[500px] h-[500px]  basis-1/3 md:basis-1/2 pl-4">
                     {/* <h2>{vid.title||vid.original_name}</h2> */}
+                    <Link href={getWatchUrl(vid.id,vid.media_type)}>
                     <Image
                       src={media(vid?.poster_path)}
                       alt=""
@@ -42,8 +44,8 @@ async function  BannerSectionContent({fetcher}){
                       className="w-[500px] h-[700px] bg-scale-6 00 rounded-lg object-cover"
                       quality={100}
                       >
-
                     </Image>
+                    </Link>
                 </CarouselItem>
               ))
             }

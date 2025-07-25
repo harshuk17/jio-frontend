@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Image from "next/image"; // ✅ Correct
 import { ChevronRight , SquareArrowOutUpRight} from 'lucide-react';
+import { useSelector } from 'react-redux';
+
 import {
   Sheet,
   SheetContent,
@@ -21,7 +23,8 @@ import Link from 'next/link';
 
 function ProfileSheet() {
     const [open,setOpen]=useState(false);
-
+    const userData= useSelector((state)=> state.user);
+    // console.log("user data in profile sheet",userData);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="w-8 h-8 ">
@@ -43,15 +46,19 @@ function ProfileSheet() {
               height={40}
               className="w-[80px] h-[80px] object-cover mt-15 absolute top-0 -translate-y-25 "
             />
-            <p className='text-xl font-bold'>Guest</p>
+            <p className='text-xl font-bold'>
+                {userData.isLoggedIn? userData.user.name : "Guest"} 
+            </p>
             <Link 
-                href="/login"
+                href={`${userData.isLoggedIn?"/":"/login"}`}
                 onClick={()=>{
                     setOpen(false);
                 }}
                 className="mt-5 border bg-pink-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
             >
-                Login
+               {
+                userData.isLoggedIn ? "Logout" : "Login"
+               }
             </Link>
             </div>
             <div className='flex flex-col '>

@@ -33,7 +33,7 @@ export const ENDPOINT = {
     //eextra data 
     getMovieDetails: (id) => `/movies/details?id=${id}`,
     getTvShowsDetails: (id) => `/tv/details?id=${id}`,
-
+    fetchMovieVideos: (id) => `/movies/${id}/videos`,
     //user
     user: "/user",
     addToWishlist: "/user/wishlist",
@@ -59,3 +59,7 @@ export const api = axios.create({
     withCredentials:true
 })
 
+export function getWatchUrl(vidId,mediaType){
+    const prefix = mediaType ==="tv"?"tv":"movies";
+    return `${prefix}/watch?id=${vidId}`;
+}
