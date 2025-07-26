@@ -7,11 +7,11 @@ import { buttonVariants } from '@/components/ui/button';
 
 export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
-  console.log("id in watch movie",id);
+  console.log("id in watch tv",id);
   if (!id) {
     return (
       <div className="mt-[80px] text-center text-red-500">
-        Movie ID is missing in the URL.
+        Tv ID is missing in the URL.
       </div>
     );
   }
@@ -19,13 +19,14 @@ export default async function Page({ searchParams }) {
   let videoData = null;
 
   try {
-    const response = await api.get(ENDPOINT.fetchMovieVideos(id));
-    // console.log("response from watch movie",response);
-    videoData = response.data.details.results[0]
-    console.log("videoData of watch in movie",videoData);
+    const response = await api.get(ENDPOINT.fetchTvVideos(id));
+    // console.log("response from watch movie",response.data);
+    videoData= response.data.TvList.results[0];
+    console.log("videoData of watch in Tv",videoData);
   } catch (err) {
     console.error("Failed to fetch movie details:", err.message);
   }
+
 
   return (
     <div className="mt-[80px]">
@@ -42,9 +43,10 @@ export default async function Page({ searchParams }) {
           <div className="flex flex-wrap gap-4 px-4 lg:px-10 py-8 items-center">
             <h1 className="text-2xl font-bold">{videoData.name }</h1>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
+              {/* <span className="text-sm text-muted-foreground">
                 {videoData.type} {videoData.official && '(Official)'}
-              </span>
+              </span> */}
+              
               <Share2 className="cursor-pointer" size={20} />
             </div>
           </div>

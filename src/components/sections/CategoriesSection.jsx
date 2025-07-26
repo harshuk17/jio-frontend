@@ -7,22 +7,24 @@ import { InboxIcon } from 'lucide-react';
 import Link from 'next/link';
 // import { getWatchUrl } from '@/lib/api';
 
-function CategoriesSection({ title, id , fetcher}) {
+function CategoriesSection({ title, id ,media_type, fetcher}) {
   return (
     <div className='px-8 py-5'>
       <h2 className='mb-2 text-xl scroll-mt-24' id={id}>{title}</h2>
       <Suspense fallback={<CategoriesFallback />}>
-      <CategoriesContent fetcher={fetcher} />
+      <CategoriesContent fetcher={fetcher} media_type={media_type}/>
       </Suspense>
     </div>
   )
 }
-async function CategoriesContent({fetcher}){
+async function CategoriesContent({fetcher,media_type}){
+  console.log("media type",media_type);
   if(!fetcher){
     console.log("fetcher is not provided");
   }
   const data = await fetcher();
-  // console.log(data);
+  
+  console.log("data in category ",data);
 
   if(!data || data.length===0){
     return<>
@@ -41,7 +43,7 @@ async function CategoriesContent({fetcher}){
       {
         data.map((item)=>(
           <li className='min-w-[200px] h-[300px] rounded-lg  ' key={item.id}>
-            <Link href={getWatchUrl(item.id,item.media_type)} key={item.id}>
+            <Link href={getWatchUrl(item.id,media_type)} key={item.id}>
            <Image
               src={media(item?.poster_path)}
               alt=""

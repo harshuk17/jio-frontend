@@ -9,6 +9,7 @@ export default function Home() {
     {
       label:"Action TV Show",
       href:"action",
+      media_type:"tv",
       fetcher: async function getActionTVData(){
         const response = await api.get(ENDPOINT.fetchActionTvShows);
         const data = response?.data?.TvList?.results;
@@ -18,6 +19,7 @@ export default function Home() {
     {
       label:"Comedy TV Show",
       href:"comedy",
+      media_type:"tv",
       fetcher: async function getComedyTVData(){
         const response = await api.get(ENDPOINT.fetchComedyTvShows);
         const data = response?.data?.TvList?.results;
@@ -27,6 +29,7 @@ export default function Home() {
     {
       label:"Crime TV Show",
       href:"crime",
+      media_type:"tv",
       fetcher: async function getCrimeTVData(){
         const response = await api.get(ENDPOINT.fetchCrimeTvShows);
         const data = response?.data?.TvList?.results;
@@ -36,6 +39,7 @@ export default function Home() {
     {
       label:"Drama TV Show",
       href:"drama",
+      media_type:"tv",
       fetcher: async function getDramaTVData(){
         const response = await api.get(ENDPOINT.fetchDramaTvShows);
         const data = response?.data?.TvList?.results;
@@ -45,6 +49,7 @@ export default function Home() {
     {
       label:"Mystery TV Show",
       href:"mystery",
+      media_type:"tv",
       fetcher: async function getMysteryTVData(){
         const response = await api.get(ENDPOINT.fetchMysteryTvShows);
         const data = response?.data?.TvList?.results;
@@ -64,7 +69,7 @@ export default function Home() {
       <BannerSection fetcher={getTVBannerData}/>
       {
         list.map((item)=>{
-          return <CategoriesSection key={item.label} title={item.label} id={item.href} fetcher={item.fetcher}/>
+          return <CategoriesSection key={item.label} title={item.label} id={item.href} media_type={item.media_type} fetcher={item.fetcher}/>
         })
       }
     </div>

@@ -9,6 +9,7 @@ export default function Home() {
     {
       label:"Action Movies",
       href:"action",
+      media_type:"movies",
       fetcher: async function getActionMovieData(){
         const response = await api.get(ENDPOINT.fetchActionMovies);
         const data = response?.data?.movieList?.results;
@@ -18,6 +19,7 @@ export default function Home() {
     {
       label:"Comedy Movie",
       href:"comedy",
+      media_type:"movies",
       fetcher: async function getComedyMovieData(){
         const response = await api.get(ENDPOINT.fetchComedyMovies);
         const data = response?.data?.movieList?.results;
@@ -27,6 +29,7 @@ export default function Home() {
     {
       label:"Horror Movie",
       href:"horror",
+      media_type:"movies",
       fetcher: async function getHorrorMovieData(){
         const response = await api.get(ENDPOINT.fetchHorrorMovies);
         const data = response?.data?.movieList?.results;
@@ -36,6 +39,7 @@ export default function Home() {
     {
       label:"Romance Movie",
       href:"romance",
+      media_type:"movies",
       fetcher: async function getRomanceMovieData(){
         const response = await api.get(ENDPOINT.fetchRomanceMovies);
         const data = response?.data?.movieList?.results;
@@ -45,6 +49,7 @@ export default function Home() {
     {
       label:"Anime Movie",
       href:"anime",
+      media_type:"movies",
       fetcher: async function getAnimeMovieData(){
         const response = await api.get(ENDPOINT.fetchAnimeMovies);
         const data = response?.data?.movieList?.results;
@@ -63,7 +68,7 @@ export default function Home() {
       <BannerSection fetcher={getMovieBannerData}/>
       {
         list.map((item)=>{
-          return <CategoriesSection key={item.label} title={item.label} id={item.href} fetcher={item.fetcher}/>
+          return <CategoriesSection key={item.label} title={item.label} id={item.href} media_type={item.media_type} fetcher={item.fetcher}/>
         })
       }
     </div>
