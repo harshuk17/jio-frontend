@@ -20,7 +20,7 @@ export default async function Page({ searchParams }) {
 
   try {
     const response = await api.get(ENDPOINT.fetchTvVideos(id));
-    // console.log("response from watch movie",response.data);
+    console.log("response from watch movie",response.data);
     videoData= response.data.TvList.results[0];
     console.log("videoData of watch in Tv",videoData);
   } catch (err) {

@@ -11,13 +11,13 @@ import {
 } from "@/components/ui/carousel"
 import Link from 'next/link';
 
-async function BannerSection({fetcher}) {
+async function BannerSection({fetcher,media_type}) {
 
   return (
-  <BannerSectionContent fetcher={fetcher}/>
+  <BannerSectionContent fetcher={fetcher} media_type={media_type}/>
   )
 }
-async function  BannerSectionContent({fetcher}){
+async function  BannerSectionContent({fetcher,media_type}){
   const data= await fetcher();
   // const bannerList = response?.data?.TvList?.results;
 
@@ -35,10 +35,10 @@ async function  BannerSectionContent({fetcher}){
               data?.map((vid)=>(
                 <CarouselItem key={vid.id} className="max-w-[500px] h-[500px]  basis-1/3 md:basis-1/2 pl-4">
                     {/* <h2>{vid.title||vid.original_name}</h2> */}
-                    <Link href={getWatchUrl(vid.id,vid.media_type)}>
+                    <Link href={getWatchUrl(vid.id,media_type)}>
                     <Image
                       src={media(vid?.poster_path)}
-                      alt=""
+                      alt="image not found"
                       width={500}
                       height={300}
                       className="w-[500px] h-[700px] bg-scale-6 00 rounded-lg object-cover"

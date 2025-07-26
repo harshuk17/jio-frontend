@@ -1,8 +1,9 @@
 import React from 'react'
 import { api, ENDPOINT } from "@/lib/api";
-import { FilmIcon, Share2 } from 'lucide-react';
+import { FilmIcon, Share2,FilePlus2 } from 'lucide-react';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
+import Wishlist from '@/components/sections/WishlistButton';
 // import ShareButton from '@/components/ShareButton';
 
 export default async function Page({ searchParams }) {
@@ -24,7 +25,7 @@ export default async function Page({ searchParams }) {
     videoData = response.data.details.results[0]
     console.log("videoData of watch in movie",videoData);
   } catch (err) {
-    console.error("Failed to fetch movie details:", err.message);
+    console.error("Failed to fetch movie data:", err.message);
   }
 
   return (
@@ -39,13 +40,19 @@ export default async function Page({ searchParams }) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-          <div className="flex flex-wrap gap-4 px-4 lg:px-10 py-8 items-center">
-            <h1 className="text-2xl font-bold">{videoData.name }</h1>
+          <div className="flex flex-wrap gap-4 px-4 lg:px-10 py-8 items-center justify-between">
             <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-bold">{videoData.name }</h1>
               <span className="text-sm text-muted-foreground">
                 {videoData.type} {videoData.official && '(Official)'}
               </span>
-              <Share2 className="cursor-pointer" size={20} />
+            </div>
+            <div className='flex gap-2'>
+           <Wishlist/>
+            <Link href="/" className='flex border-2 border-pink-500 rounded-2xl gap-1 p-2'>
+              <Share2 className="cursor-pointer  mt-1" size={20} />
+              Copy Link!
+            </Link>
             </div>
           </div>
         </>

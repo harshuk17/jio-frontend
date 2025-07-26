@@ -5,6 +5,7 @@ import Image from "next/image";
 import { api, ENDPOINT } from "@/lib/api";
 
 export default function Home() {
+  const media_type="tv";
   const list = [
     {
       label:"Action TV Show",
@@ -66,7 +67,7 @@ export default function Home() {
   return (
     <div className=" ">
       <JumperSection list={list}/>
-      <BannerSection fetcher={getTVBannerData}/>
+      <BannerSection fetcher={getTVBannerData} media_type={media_type}/>
       {
         list.map((item)=>{
           return <CategoriesSection key={item.label} title={item.label} id={item.href} media_type={item.media_type} fetcher={item.fetcher}/>
