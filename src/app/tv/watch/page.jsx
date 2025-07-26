@@ -4,11 +4,12 @@ import { FilmIcon, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 // import ShareButton from '@/components/ShareButton';
+import WishlistButton from '@/components/sections/WishlistButton';
 
 export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
   console.log("id in watch tv",id);
-  if (!id) {
+  if (!id) { 
     return (
       <div className="mt-[80px] text-center text-red-500">
         Tv ID is missing in the URL.
@@ -40,14 +41,19 @@ export default async function Page({ searchParams }) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-          <div className="flex flex-wrap gap-4 px-4 lg:px-10 py-8 items-center">
-            <h1 className="text-2xl font-bold">{videoData.name }</h1>
+          <div className="flex flex-wrap gap-4 px-4 lg:px-10 py-8 items-center justify-between">
             <div className="flex items-center gap-2">
-              {/* <span className="text-sm text-muted-foreground">
+            <h1 className="text-2xl font-bold">{videoData.name }</h1>
+              <span className="text-sm text-muted-foreground">
                 {videoData.type} {videoData.official && '(Official)'}
-              </span> */}
-              
-              <Share2 className="cursor-pointer" size={20} />
+              </span>
+            </div>
+            <div className='flex gap-2'>
+           <WishlistButton/>
+            <Link href="/" className='flex border-2 border-pink-500 rounded-2xl gap-1 p-2'>
+              <Share2 className="cursor-pointer  mt-1" size={20} />
+              Copy Link!
+            </Link>
             </div>
           </div>
         </>

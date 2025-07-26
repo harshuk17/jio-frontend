@@ -3,7 +3,7 @@ import { api, ENDPOINT } from "@/lib/api";
 import { FilmIcon, Share2,FilePlus2 } from 'lucide-react';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
-import Wishlist from '@/components/sections/WishlistButton';
+import WishlistButton from '@/components/sections/WishlistButton';
 // import ShareButton from '@/components/ShareButton';
 
 export default async function Page({ searchParams }) {
@@ -48,7 +48,7 @@ export default async function Page({ searchParams }) {
               </span>
             </div>
             <div className='flex gap-2'>
-           <Wishlist/>
+           <WishlistButton/>
             <Link href="/" className='flex border-2 border-pink-500 rounded-2xl gap-1 p-2'>
               <Share2 className="cursor-pointer  mt-1" size={20} />
               Copy Link!
