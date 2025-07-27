@@ -3,6 +3,7 @@
   import Link from "next/link";
   import { useDispatch } from "react-redux";
   import { userLoggedInDetails } from "@/redux/userSlice";
+  import { Loader2 } from "lucide-react";
   // import { useState } from "react";
   import {
     Card,
@@ -35,8 +36,8 @@
         };
         setLoading(true);
         const response = await api.post(ENDPOINT.login,{
-          email:email,
-          password:password
+          email,
+          password
         });
         if(response.status===200){
           dispatch(userLoggedInDetails(response.data.user));
@@ -105,9 +106,17 @@
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full bg-pink-400 text-black font-semibold hover:bg-pink-300 cursor-pointer" variant='outline' onClick={onSubmit}>
-            Login
-          </Button>
+            <Button type="submit" className="w-full bg-pink-400 text-black font-semibold hover:bg-pink-300 hover:cursor-pointer" variant='outline' onClick={onSubmit}
+        >
+         {loading ? (
+        <>
+          <Loader2 className="animate-spin w-4 h-4" />
+         
+        </>
+      ) : (
+        'Login'
+      )}
+        </Button>
           <Button variant="outline" className="w-full bg-gradient-to-r 
                     from-red-500 via-yellow-400 via-green-400  text-black font-semibold hover:cursor-pointer">
             Login with Google
