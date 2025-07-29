@@ -29,9 +29,12 @@
     const router = useRouter();
     const userData= useSelector((state)=> state.user);
 
-    if(userData.isLoggedIn){
-      return router.push("/")
+    
+  useEffect(() => {
+    if (userData.isLoggedIn) {
+      router.push("/");
     }
+  }, [userData.isLoggedIn]); // 
 
     const onSubmit =async()=>{
       try{  
