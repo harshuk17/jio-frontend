@@ -43,7 +43,8 @@ async function CategoriesContent({fetcher,media_type}){
       {
         data.map((item)=>(
           <li className='min-w-[200px] h-[300px] rounded-lg  ' key={item.id}>
-            <Link href={getWatchUrl(item.id,media_type)} key={item.id}>
+            <Link href={getWatchUrl(item.id,media_type,item.poster_path)}
+              key={item.id}>
            <Image
               src={media(item?.poster_path)}
               alt=""

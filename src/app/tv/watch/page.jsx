@@ -8,6 +8,7 @@ import WishlistButton from '@/components/sections/WishlistButton';
 
 export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
+  const poster_path =searchParams.poster_path;
   console.log("id in watch tv",id);
   if (!id) { 
     return (
@@ -49,7 +50,16 @@ export default async function Page({ searchParams }) {
               </span>
             </div>
             <div className='flex gap-2'>
-           <WishlistButton/>
+           <WishlistButton
+            wishlist={
+               {
+                id:videoData.id,
+                name:videoData.name,
+                poster_path:poster_path
+               }
+
+              }
+           />
             <Link href="/" className='flex border-2 border-pink-500 rounded-2xl gap-1 p-2'>
               <Share2 className="cursor-pointer  mt-1" size={20} />
               Copy Link!

@@ -19,6 +19,7 @@
   import { useState } from "react"
   import { api, ENDPOINT } from "@/lib/api";
   import { useRouter } from "next/navigation";
+  import { useSelector } from "react-redux";
 
   export default function CardDemo() {
     const [email,setEmail] = useState("");
@@ -26,6 +27,11 @@
     const [loading,setLoading] = useState(false);
     const dispatch =useDispatch();
     const router = useRouter();
+    const userData= useSelector((state)=> state.user);
+
+    if(userData.isLoggedIn){
+      return router.push("/")
+    }
 
     const onSubmit =async()=>{
       try{  

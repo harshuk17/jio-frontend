@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
+import { useSelector } from "react-redux";
 
 export default function CardDemo() {
   const [name,setName] = useState("");
@@ -29,7 +30,11 @@ export default function CardDemo() {
   const [loading,setLoading]= useState(false);
   const dispatch =useDispatch();
   const router = useRouter();
+  const userData= useSelector((state)=> state.user);
 
+  if(userData.isLoggedIn){
+    return router.push("/");
+  }
 
  const onSubmit =async()=>{
      try{  
