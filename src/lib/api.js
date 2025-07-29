@@ -6,7 +6,6 @@ export const ENDPOINT = {
     login: "/auth/login",
     signup: "/auth/signup",
     // logout , user pending
-    user: "/user",
     logout: "/auth/logout",
     forgetpassword: "/auth/forgetPassword",
     resetPassword: "/auth/resetPassword",
@@ -35,6 +34,7 @@ export const ENDPOINT = {
     getTvShowsDetails: (id) => `/tv/details?id=${id}`,
     fetchMovieVideos: (id) => `/movies/${id}/videos`,
     fetchTvVideos : (id) => `/tv/${id}/videos`,
+    
     //user
     user: "/user",
     addToWishlist: "/user/wishlist",

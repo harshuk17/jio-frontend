@@ -24,7 +24,7 @@ import Link from 'next/link';
 function ProfileSheet() {
     const [open,setOpen]=useState(false);
     const userData= useSelector((state)=> state.user);
-    // console.log("user data in profile sheet",userData);
+    console.log("user data in profile sheet",userData);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="w-8 h-8 ">
