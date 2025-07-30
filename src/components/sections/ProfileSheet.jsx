@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import Image from "next/image"; // ✅ Correct
 import { ChevronRight , SquareArrowOutUpRight} from 'lucide-react';
 import { useSelector } from 'react-redux';
-
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { userLogOutDetails } from '@/redux/userSlice';
 import {
   Sheet,
   SheetContent,
@@ -12,6 +14,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link';
+import { ENDPOINT } from '@/lib/api';
+import { api } from '@/lib/api';
 
   const navLinks = [
     { name: "Home", key: "", href: "/" },
@@ -22,9 +26,27 @@ import Link from 'next/link';
   ];
 
 function ProfileSheet() {
+    const router = useRouter();
     const [open,setOpen]=useState(false);
     const userData= useSelector((state)=> state.user);
     console.log("user data in profile sheet",userData);
+    const dispatch =useDispatch();
+
+    const handleLogout =async()=>{
+        try{
+            console.log("handle logout is called")
+            const response = await api.post(ENDPOINT.logout, {}, {
+            withCredentials: true
+            });
+            if(response.status===200){
+                alert("Logout Succesfully")
+                dispatch(userLogOutDetails());
+                router.push("/");
+            }
+        }catch(err){
+            console.log(err.message);
+        }
+    }
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="w-8 h-8 ">
@@ -49,17 +71,22 @@ function ProfileSheet() {
             <p className='text-xl font-bold'>
                 {userData.isLoggedIn? userData.user.name : "Guest"} 
             </p>
-            <Link 
-                href={`${userData.isLoggedIn?"/":"/login"}`}
-                onClick={()=>{
-                    setOpen(false);
-                }}
+            {userData.isLoggedIn ? (
+                <button
+                onClick={handleLogout}
                 className="mt-5 border bg-pink-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
-            >
-               {
-                userData.isLoggedIn ? "Logout" : "Login"
-               }
-            </Link>
+                >
+                Logout
+                </button>
+            ) : (
+                <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="mt-5 border bg-pink-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
+                >
+                Login
+                </Link>
+            )}
             </div>
             <div className='flex flex-col '>
                 <Link className='flex justify-between' href='/subscription' onClick={()=>{

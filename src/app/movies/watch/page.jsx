@@ -2,9 +2,10 @@ import React from 'react'
 import { api, ENDPOINT } from "@/lib/api";
 import { FilmIcon, Share2,FilePlus2 } from 'lucide-react';
 import Link from 'next/link';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import WishlistButton from '@/components/sections/WishlistButton';
 // import ShareButton from '@/components/ShareButton';
+import ShareButton from '@/components/atom/ShareButton';
 
 export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
@@ -61,10 +62,7 @@ export default async function Page({ searchParams }) {
 
               }
            />
-            <Link href="/" className='flex border-2 border-pink-500 rounded-2xl gap-1 p-2'>
-              <Share2 className="cursor-pointer  mt-1" size={20} />
-              Copy Link!
-            </Link>
+          <ShareButton/>
             </div>
           </div>
         </>

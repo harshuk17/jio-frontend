@@ -16,10 +16,11 @@
   } from "@/components/ui/card"
   import { Input } from "@/components/ui/input"
   import { Label } from "@/components/ui/label"
-  import { useState } from "react"
+  import { useEffect, useState } from "react"
   import { api, ENDPOINT } from "@/lib/api";
   import { useRouter } from "next/navigation";
   import { useSelector } from "react-redux";
+  
 
   export default function CardDemo() {
     const [email,setEmail] = useState("");
@@ -100,12 +101,12 @@
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
+                  <Link
+                    href="/resetPassword"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
                 <Input id="password" type="password" required   onChange={(e)=>{
                     setPassword(e.target.value);
