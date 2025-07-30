@@ -1,3 +1,101 @@
+"use client";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
+
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { api, ENDPOINT } from "@/lib/api";
+import { LucideLoader2 } from "lucide-react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
+
+
+function ResetPassword() {
+    const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
+    // reponsible for oepning the dialog 
+    const [showDialog, setShowDialog] = useState(false);
+    const [otp, setOtp] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const router=useRouter();
+
+
+    const handleForgetPassword = async () => {
+        setLoading(true);
+        try {
+            const res = await api.patch(ENDPOINT.forgetpassword, { email });
+            if (res.data.status === "success") {
+                toast("OTP sent successfully!");
+                setShowDialog(true)
+            } else {
+                toast("Failed to send OTP. Try Again");
+            }
+        } catch (err) {
+            if (err?.response?.data?.message === "no user with this email id found") {
+                console.log("Email doesn't exist");
+            } else {
+                console.log("Error sending OTP");
+                console.error("Error sending OTP:", err);
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
+    const handleResetPassword = async () => {
+        setLoading(true);
+        if (
+            newPassword.length === 0 ||
+            confirmNewPassword.length === 0 ||
+            otp.length == 0
+        ) {
+            toast("Please fill all fields");
+            setLoading(false);
+            return;
+        }
+        if (newPassword !== confirmNewPassword) {
+            toast("New password and Confirm password do not match");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const res = await api.patch(ENDPOINT.resetPassword, {
+                email,
+                password: newPassword,
+                confirmPassword: confirmNewPassword,
+                otp,
+            });
+
+            if (res.data.status === "success") {
+                toast("Password reset successfully!");
+                setShowDialog(false);
+                router.push("/login");
+            } else {
+                toast("Failed to reset password. Try Again");
+            }
+        } catch (err) {
+            if (err.response.data.message === "otp is not found or wrong") {
+                toast("Invalid OTP");
+            } else {
+                toast("Error resetting password");
+                console.error("Error resetting password:", err);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+    return (
+        // forgetPassword  form 
         <>
             <div className="h-screen flex items-center justify-center">
                 <Card className="w-full max-w-sm">
@@ -73,3 +171,8 @@
             </Dialog>
 
         </>
+
+    )
+}
+
+export default ResetPassword;
