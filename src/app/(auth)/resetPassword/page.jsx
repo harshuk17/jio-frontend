@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 function ResetPassword() {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-    // reponsible for oepning the dialog 
+    // reponsible for opening the dialog 
     const [showDialog, setShowDialog] = useState(false);
     const [otp, setOtp] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -35,10 +35,10 @@ function ResetPassword() {
         try {
             const res = await api.patch(ENDPOINT.forgetpassword, { email });
             if (res.data.status === "success") {
-                toast("OTP sent successfully!");
+                alert("OTP sent successfully!");
                 setShowDialog(true)
             } else {
-                toast("Failed to send OTP. Try Again");
+                alert("Failed to send OTP. Try Again");
             }
         } catch (err) {
             if (err?.response?.data?.message === "no user with this email id found") {
@@ -58,17 +58,18 @@ function ResetPassword() {
             confirmNewPassword.length === 0 ||
             otp.length == 0
         ) {
-            toast("Please fill all fields");
+            alert("Please fill all fields");
             setLoading(false);
             return;
         }
         if (newPassword !== confirmNewPassword) {
-            toast("New password and Confirm password do not match");
+            alert("New password and Confirm password do not match");
             setLoading(false);
             return;
         }
 
         try {
+            console.log("request is sending in frontend for reset password")
             const res = await api.patch(ENDPOINT.resetPassword, {
                 email,
                 password: newPassword,
@@ -77,17 +78,17 @@ function ResetPassword() {
             });
 
             if (res.data.status === "success") {
-                toast("Password reset successfully!");
+                alert("Password reset successfully!");
                 setShowDialog(false);
                 router.push("/login");
             } else {
-                toast("Failed to reset password. Try Again");
+                alert("Failed to reset password. Try Again");
             }
         } catch (err) {
             if (err.response.data.message === "otp is not found or wrong") {
-                toast("Invalid OTP");
+                alert("Invalid OTP");
             } else {
-                toast("Error resetting password");
+                alert("Error resetting password");
                 console.error("Error resetting password:", err);
             }
         } finally {
