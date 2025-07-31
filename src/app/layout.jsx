@@ -6,6 +6,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({subsets:["latin"]})
 import StoreProvider from "@/provider/storeProvider";
 import AuthProvider from "@/provider/authProvider";
+import { Toaster } from "@/components/ui/sonner"
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +36,7 @@ export default function RootLayout({ children }) {
           <Header></Header>
           {children}
           <Footer></Footer>
-    
+          <Toaster />
          </AuthProvider>
         </StoreProvider>
       </body>
