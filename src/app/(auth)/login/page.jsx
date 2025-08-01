@@ -20,7 +20,7 @@
   import { api, ENDPOINT } from "@/lib/api";
   import { useRouter } from "next/navigation";
   import { useSelector } from "react-redux";
-  
+  import { toast } from "sonner"
 
   export default function CardDemo() {
     const [email,setEmail] = useState("");
@@ -41,7 +41,7 @@
       try{  
         if(!email || !password){
           return(
-            alert("Fill the required fields")
+            toast("Fill the required fields")
           )
         };
         setLoading(true);
@@ -51,13 +51,13 @@
         });
         if(response.status===200){
           dispatch(userLoggedInDetails(response.data.user));
-          // alert("Successfully Loged In")
+          // toast("Successfully Loged In")
           router.push("/")
         }
         
       }catch(err){
         console.log("errr:",err.message);
-        alert(err.response?.data?.message || "Invalid credentials");
+        toast(err.response?.data?.message || "Invalid credentials");
     
       }finally{
         setLoading(false)
@@ -110,7 +110,7 @@
                 </div>
                 <Input id="password" type="password" required   onChange={(e)=>{
                     setPassword(e.target.value);
-                  }}/>
+                  }}  autoComplete="new-password"/>
               </div>
             </div>
           </form>
@@ -127,10 +127,7 @@
         'Login'
       )}
         </Button>
-          <Button variant="outline" className="w-full bg-gradient-to-r 
-                    from-red-500 via-yellow-400 via-green-400  text-black font-semibold hover:cursor-pointer">
-            Login with Google
-          </Button>
+         
         </CardFooter>
       </Card>
       </div>

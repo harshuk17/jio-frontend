@@ -34,14 +34,14 @@ function ResetPassword() {
         try {
             const res = await api.patch(ENDPOINT.forgetpassword, { email });
             if (res.data.status === "success") {
-                toast("OTP sent successfully!");
+                toast.success("OTP sent successfully!");
                 setShowDialog(true)
             } else {
-                toast("Failed to send OTP. Try Again");
+                toast.error("Failed to send OTP. Try Again");
             }
         } catch (err) {
             if (err?.response?.data?.message === "user not found! Enter valid email") {
-                toast("Email doesn't exist! Enter valid email");
+                toast.error("Email doesn't exist! Enter valid email");
             } else {
                 console.log("Error sending OTP");
                 console.error("Error sending OTP:", err);
@@ -55,14 +55,14 @@ function ResetPassword() {
         if (
             newPassword.length === 0 ||
             confirmNewPassword.length === 0 ||
-            otp.length == 0
+            otp.length === 0
         ) {
-            toast("Please fill all fields");
+            toast.error("Please fill all fields");
             setLoading(false);
             return;
         }
         if (newPassword !== confirmNewPassword) {
-            toast("New password and Confirm password do not match");
+            toast.error("New password and Confirm password do not match");
             setLoading(false);
             return;
         }
@@ -77,21 +77,21 @@ function ResetPassword() {
             });
 
             if (res.data.status === "success") {
-                toast("Password reset successfully!");
+                toast.success("Password reset successfully!");
                 setShowDialog(false);
                 router.push("/login");
             } else {
-                toast("Failed to reset password. Try Again");
+                toast.error("Failed to reset password. Try Again");
             }
         } catch (err) {
             if (err.response.data.message === "OTP does not match") {
-                toast("Invalid OTP");
+                toast.error("Invalid OTP");
             }
             if(err.response.data.message==="OTP expired"
             ) {
-                toast("OTP expired! Try again");
+                toast.error("OTP expired! Try again");
             }else {
-                toast("Error resetting password");
+                toast.error("Error resetting password");
                 console.error("Error resetting password:", err);
             }
         } finally {
@@ -102,7 +102,7 @@ function ResetPassword() {
         // forgetPassword  form 
         <>
             <div className="h-screen flex items-center justify-center">
-                <Card className="w-full max-w-sm">
+                <Card className="w-full max-w-sm shadow-lg shadow-pink-500/100 ">
                     <CardHeader>
                         <CardTitle className="text-xl">
                             Forgot Password / Reset Password
@@ -112,8 +112,8 @@ function ResetPassword() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-2">
-                        <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
+                        <div className="flex flex-col justify-center items-center gap-2">
+                            <Label htmlFor="email" className="w-full ">Email</Label>
                             <Input
                                 type="email"
                                 placeholder="m@example.com"
@@ -121,7 +121,7 @@ function ResetPassword() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
-                            <Button className="mt-6" onClick={handleForgetPassword}>
+                            <Button className="mt-6 border w-30 flex justify-center bg-pink-500 hover:bg-pink-400 hover:cursor-pointer" onClick={handleForgetPassword}>
                                 Send OTP
                                 {loading && (
                                     <LucideLoader2 className="animate-spin ml-2 w-4 h-4" />

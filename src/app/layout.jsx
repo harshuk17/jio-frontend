@@ -7,6 +7,7 @@ const inter = Inter({subsets:["latin"]})
 import StoreProvider from "@/provider/storeProvider";
 import AuthProvider from "@/provider/authProvider";
 import { Toaster } from "@/components/ui/sonner"
+import { toast } from "sonner";
 
 
 const geistSans = Geist({
@@ -32,11 +33,20 @@ export default function RootLayout({ children }) {
       >
         <StoreProvider>
          <AuthProvider>
-
           <Header></Header>
           {children}
           <Footer></Footer>
-          <Toaster />
+         <Toaster
+              toastOptions={{
+                classNames: {
+                  toast: "bg-white text-black border border-gray-300 shadow-md rounded-lg",
+                  title: "font-semibold text-lg",
+                  description: "text-sm text-gray-600",
+                  actionButton: "bg-white text-white hover:bg-blue-600",
+                  cancelButton: "text-gray-500 hover:text-black",
+                },
+              }}
+            />
          </AuthProvider>
         </StoreProvider>
       </body>

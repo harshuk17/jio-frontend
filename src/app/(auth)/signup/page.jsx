@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { useSelector } from "react-redux";
+import { toast } from "sonner"
 
 export default function CardDemo() {
   const [name,setName] = useState("");
@@ -40,7 +41,7 @@ export default function CardDemo() {
      try{  
        if(!name||!email || !password || !confirmpassword){
          return(
-           alert("Fill the required fields")
+           toast.error("Fill the required fields")
          )
        };
        setLoading(true);
@@ -51,7 +52,7 @@ export default function CardDemo() {
          confirmpassword:confirmpassword
        });
        if(response.status===200){
-         // alert("Successfully Loged In")
+         toast.success("Successfully Loged In")
           dispatch(userLoggedInDetails(response.data.user));
           setName("");
           setEmail("");
@@ -67,7 +68,7 @@ export default function CardDemo() {
           setConfirmPassword("");
           router.push("/")
        console.log("errr:",err);
-       alert("invalid credentials");
+       toast.error("invalid credentials");
     
      }finally{
        setLoading(false)

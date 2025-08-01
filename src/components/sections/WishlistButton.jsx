@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FilePlus2, Loader2Icon } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { ENDPOINT } from '@/lib/api';
+import { toast } from "sonner"
 
 function WishlistButton({wishlist}) {
   const user = useSelector((state)=> state.user);
@@ -17,10 +18,10 @@ function WishlistButton({wishlist}) {
       setLoading(true);
       const response = await api.post(ENDPOINT.addToWishlist,wishlist);
       if(response.status === 200){
-        alert("Added to Wishlist");
+        toast("Added to Wishlist");
       }
     }catch(err){
-      alert(err.response.data.message);
+      toast(err.response.data.message);
     }finally{
       setLoading(false0);
     }

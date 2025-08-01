@@ -16,6 +16,7 @@ import {
 import Link from 'next/link';
 import { ENDPOINT } from '@/lib/api';
 import { api } from '@/lib/api';
+import { toast } from 'sonner';
 
   const navLinks = [
     { name: "Home", key: "", href: "/" },
@@ -39,7 +40,7 @@ function ProfileSheet() {
             withCredentials: true
             });
             if(response.status===200){
-                alert("Logout Succesfully")
+                toast("Logout Succesfully")
                 dispatch(userLogOutDetails());
                 router.push("/");
             }
