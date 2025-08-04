@@ -51,13 +51,13 @@
         });
         if(response.status===200){
           dispatch(userLoggedInDetails(response.data.user));
-          // toast("Successfully Loged In")
+          toast.success("Successfully Loged In")
           router.push("/")
         }
         
       }catch(err){
         console.log("errr:",err.message);
-        toast(err.response?.data?.message || "Invalid credentials");
+        toast.error(err.response?.data?.message || "Invalid credentials");
     
       }finally{
         setLoading(false)
