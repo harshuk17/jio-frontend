@@ -49,10 +49,10 @@ export default function CardDemo() {
          name:name,
          email:email,
          password:password,
-         confirmpassword:confirmpassword
+         confirmPassword:confirmpassword
        });
        if(response.status===200){
-         toast.success("Successfully Loged In")
+          toast.success("Successfully Loged In")
           dispatch(userLoggedInDetails(response.data.user));
           setName("");
           setEmail("");
@@ -62,13 +62,17 @@ export default function CardDemo() {
        }
        
      }catch(err){
+        const errorMessage =
+        err?.response?.data?.error ||
+        err?.response?.data?.message ||
+      "Something went wrong";
           setName("");
           setEmail("");
           setPassword("");
           setConfirmPassword("");
           router.push("/")
        console.log("errr:",err);
-       toast.error("invalid credentials");
+       toast.error(errorMessage);
     
      }finally{
        setLoading(false)
@@ -131,7 +135,7 @@ export default function CardDemo() {
                   (e)=>{
                     setPassword(e.target.value)
                   }
-                }/>
+                } autoComplete="new-password"/>
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
