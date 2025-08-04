@@ -65,3 +65,5 @@ export function getWatchUrl(vidId,media_type,poster_path){
     const prefix = media_type ==="tv"?"tv":"movies";
     return `${prefix}/watch?id=${vidId}&poster_path=${encodeURIComponent(poster_path)}`;
 }
+export const getStreamingVideoThumbnail = (id) =>
+    API_BASE_URL + ENDPOINT.fetchVideoThumbnail(id);

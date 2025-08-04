@@ -83,7 +83,7 @@ function ProfileSheet() {
                 <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="mt-5 border bg-pink-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
+                className="mt-5 border bg-green-600 px-10 py-3 rounded-3xl hover:bg-pink-400"
                 >
                 Login
                 </Link>

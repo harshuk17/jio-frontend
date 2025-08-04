@@ -38,8 +38,8 @@ function watchlist() {
       {userData.isLoggedIn?  <CategoriesSection 
                 fetcher={fetcher} title={title} id="watchlistheading"
             />:<div className='flex flex-col justify-center items-center gap-2 '>
-        <FolderLock className='h-25 w-25'/>
-        <p className='text-xl'>Login to watch your watchlist</p>
+        <FolderLock className='h-25 w-25 text-slate-400'/>
+        <p className=' text-slate-400'>Login to watch your watchlist</p>
         <Link href="/login">
           <button className='hover:cursor-pointer hover:bg-pink-400 mt-6  px-8 py-4 rounded-2xl bg-pink-500 font-bold '>
             Login
