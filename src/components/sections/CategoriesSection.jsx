@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Skeleton } from '../atom/skeleton'
+import { Skeleton } from '../atom/Skeleton'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { getWatchUrl, media } from '@/lib/api';

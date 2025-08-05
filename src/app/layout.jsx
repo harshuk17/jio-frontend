@@ -4,8 +4,8 @@ import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Fotter";
 import { Inter } from "next/font/google";
 const inter = Inter({subsets:["latin"]})
-import StoreProvider from "@/provider/storeProvider";
-import AuthProvider from "@/provider/authProvider";
+import StoreProvider from "@/provider/StoreProvider";
+import AuthProvider from "@/provider/AuthProvider";
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner";
 
