@@ -20,7 +20,7 @@ export default function Header() {
     { name: "Movies", key: "movies", href: "/movies" },
     { name: "Tv Shows", key: "tv-shows", href: "/tv" },
     { name: "Watchlist", key: "watchlist", href: "/watchlist" },
-    { name: "Jio+", key: "jio+", href: "/jio+" },
+    { name: "Jio+", key: "jio+", href: "/jio-plus" },
   ];
 
   return (

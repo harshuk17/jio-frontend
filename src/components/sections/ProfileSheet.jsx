@@ -20,10 +20,10 @@ import { toast } from 'sonner';
 
   const navLinks = [
     { name: "Home", key: "", href: "/" },
-    { name: "Movies", key: "movies", href: "/movies/watch" },
-    { name: "Tv Shows", key: "tv-shows", href: "/tv-shows/watch" },
+    { name: "Movies", key: "movies", href: "/movies" },
+    { name: "Tv Shows", key: "tv-shows", href: "/tv-shows" },
     { name: "Watchlist", key: "watchlist", href: "/watchlist" },
-    { name: "Jio+", key: "jio+", href: "/jio+/watch" },
+    { name: "Jio+", key: "jio+", href: "/jio-plus" },
   ];
 
 function ProfileSheet() {
