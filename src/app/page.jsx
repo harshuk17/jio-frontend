@@ -6,39 +6,48 @@ import { api, ENDPOINT } from "@/lib/api";
 
 export default function Home() {
   const list = [
-    {
-      label:"Top Rated",
-      href:"topRated",
-      fetcher: async function getTopRatedData(){
-        const response = await api.get(ENDPOINT.discoverTrending);
-        const data = response?.data?.homeList?.results;
-        return data;
-      }
-    },
-    {
-      label:"Popular",
-      href:"popular",
-      fetcher: async function getPopularData(){
+  {
+    label: "Popular",
+    href: "popular",
+    fetcher: async function getPopularData() {
+      try {
         const response = await api.get(ENDPOINT.discoverNowPlaying);
         const data = response?.data?.homeList?.results;
         return data;
+      } catch (error) {
+        console.error("Error fetching popular data:", error.message);
+        return [];
       }
-    },
-    {
-      label:"Upcoming",
-      href:"upcoming",
-      fetcher: async function getUpcomingData(){
+    }
+  },
+  {
+    label: "Upcoming",
+    href: "upcoming",
+    fetcher: async function getUpcomingData() {
+      try {
         const response = await api.get(ENDPOINT.discoverUpcoming);
         const data = response?.data?.homeList?.results;
         return data;
+      } catch (error) {
+        console.error("Error fetching upcoming data:", error.message);
+        return [];
       }
     }
-  ];
-    async function getBannerData(){
+  }
+];
+
+// Outside of the array
+async function getBannerData() {
+  try {
     const resp = await api.get(ENDPOINT.discoverUpcoming);
-    const data = resp?.data?.homeList.results;
+    const data = resp?.data?.homeList?.results;
     return data;
+  } catch (error) {
+    console.error("Error fetching banner data:", error.message);
+    return [];
+  }
 }
+
   return (
     <div className=" ">
       <JumperSection list={list}/>

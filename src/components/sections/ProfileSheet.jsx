@@ -23,7 +23,7 @@ import { toast } from 'sonner';
     { name: "Movies", key: "movies", href: "/movies" },
     { name: "Tv Shows", key: "tv-shows", href: "/tv-shows" },
     { name: "Watchlist", key: "watchlist", href: "/watchlist" },
-    { name: "Jio+", key: "jio+", href: "/jio-plus" },
+    { name: "Jio+", key: "jio-plus", href: "/jio-plus" },
   ];
 
 function ProfileSheet() {

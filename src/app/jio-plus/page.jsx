@@ -3,10 +3,11 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { PlayCircleIcon } from "lucide-react";
+export const dynamic = 'force-dynamic';
 
 export default async function JioPlusPage() {
     const videos = (await api.get(ENDPOINT.fetchAllStreamingVideos)).data?.data;
-
+    console.log("jio+ id called in frontend")
     return (
         <main className="h-screen mt-20 p-8">
             <h1 className="text-2xl font-medium mb-6">Jio+ Premium Videos</h1>
@@ -16,7 +17,7 @@ export default async function JioPlusPage() {
                 {videos?.map((video, index) => (
                     <Link
                         key={index}
-                        href={`jio-plus/watch?id=${video.id}`}
+                        href={`/jio-plus/watch?id=${video.id}`}
                         className="relative flex items-center justify-center"
                     >
                         <Image
