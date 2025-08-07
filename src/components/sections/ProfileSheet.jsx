@@ -21,7 +21,7 @@ import { toast } from 'sonner';
   const navLinks = [
     { name: "Home", key: "", href: "/" },
     { name: "Movies", key: "movies", href: "/movies" },
-    { name: "Tv Shows", key: "tv-shows", href: "/tv-shows" },
+    { name: "Tv Shows", key: "tv-shows", href: "/tv" },
     { name: "Watchlist", key: "watchlist", href: "/watchlist" },
     { name: "Jio+", key: "jio-plus", href: "/jio-plus" },
   ];
