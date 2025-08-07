@@ -7,8 +7,9 @@ const nextConfig = {
                 hostname:"image.tmdb.org"
             },
             {
-                hostname:"localhost"
-            }
+                protocol: 'https',
+                hostname: 'jio-backend-puq2.onrender.com',
+            },
         ]
     }
 
