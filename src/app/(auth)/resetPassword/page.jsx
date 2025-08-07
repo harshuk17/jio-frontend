@@ -68,7 +68,7 @@ function ResetPassword() {
         }
 
         try {
-            console.log("request is sending in frontend for reset password")
+            // console.log("request is sending in frontend for reset password")
             const res = await api.patch(ENDPOINT.resetPassword, {
                 email,
                 password: newPassword,

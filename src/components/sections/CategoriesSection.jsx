@@ -18,7 +18,7 @@ function CategoriesSection({ title, id ,media_type, fetcher}) {
   )
 }
 async function CategoriesContent({fetcher,media_type}){
-  console.log("media type",media_type);
+  // console.log("media type",media_type);
   if(!fetcher){
     console.log("fetcher is not provided");
   }

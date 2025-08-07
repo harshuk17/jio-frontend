@@ -9,7 +9,7 @@ import WishlistButton from '@/components/sections/WishlistButton';
 export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
   const poster_path =searchParams.poster_path;
-  console.log("id in watch tv",id);
+  // console.log("id in watch tv",id);
   if (!id) { 
     return (
       <div className="mt-[80px] text-center text-red-500">
@@ -22,9 +22,9 @@ export default async function Page({ searchParams }) {
 
   try {
     const response = await api.get(ENDPOINT.fetchTvVideos(id));
-    console.log("response from watch movie",response.data);
+    // console.log("response from watch movie",response.data);
     videoData= response.data.TvList.results[0];
-    console.log("videoData of watch in Tv",videoData);
+    // console.log("videoData of watch in Tv",videoData);
   } catch (err) {
     console.error("Failed to fetch movie details:", err.message);
   }

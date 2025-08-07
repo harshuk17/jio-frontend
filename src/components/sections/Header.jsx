@@ -13,7 +13,7 @@ import ProfileSheet from "./ProfileSheet"
 export default function Header() {
   const path = usePathname();
   const activeTabKey = path.split("/")[1];
-  console.log("active tab key -", activeTabKey);
+  // console.log("active tab key -", activeTabKey);
 
   const navLinks = [
     { name: "Home", key: "", href: "/" },

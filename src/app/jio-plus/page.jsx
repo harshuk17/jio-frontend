@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function JioPlusPage() {
     const videos = (await api.get(ENDPOINT.fetchAllStreamingVideos)).data?.data;
-    console.log("jio+ id called in frontend")
+    // console.log("jio+ id called in frontend")
     return (
         <main className="h-screen mt-20 p-8">
             <h1 className="text-2xl font-medium mb-6">Jio+ Premium Videos</h1>

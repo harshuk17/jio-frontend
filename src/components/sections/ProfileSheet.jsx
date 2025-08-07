@@ -30,12 +30,12 @@ function ProfileSheet() {
     const router = useRouter();
     const [open,setOpen]=useState(false);
     const userData= useSelector((state)=> state.user);
-    console.log("user data in profile sheet",userData);
+    // console.log("user data in profile sheet",userData);
     const dispatch =useDispatch();
 
     const handleLogout =async()=>{
         try{
-            console.log("handle logout is called")
+            // console.log("handle logout is called")
             const response = await api.post(ENDPOINT.logout, {}, {
             withCredentials: true
             });

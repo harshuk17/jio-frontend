@@ -11,8 +11,8 @@ export default async function Page({ searchParams }) {
   const id =  searchParams?.id;
   // const poster_path = searchParams?.poster_path;
   const poster_path = decodeURIComponent(searchParams?.poster_path || '');
-  console.log("poster path in movies",poster_path);
-  console.log("id in watch movie",id); 
+  // console.log("poster path in movies",poster_path);
+  // console.log("id in watch movie",id); 
   if (!id) {
     return (
       <div className="mt-[80px] text-center text-red-500">
@@ -27,7 +27,7 @@ export default async function Page({ searchParams }) {
     const response = await api.get(ENDPOINT.fetchMovieVideos(id));
     // console.log("response from watch movie",response);
     videoData = response.data.details.results[0]
-    console.log("videoData of watch in movie",videoData);
+    // console.log("videoData of watch in movie",videoData);
   } catch (err) {
     console.error("Failed to fetch movie data:", err.message);
   }

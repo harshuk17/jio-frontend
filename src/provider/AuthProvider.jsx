@@ -14,7 +14,7 @@ const AuthProvider = ({children})=>{
             const fetcher =async ()=>{
                 try{
                     const res = await api.get(ENDPOINT.user);
-                    console.log("authProvider response",res.data.user);
+                    // console.log("authProvider response",res.data.user);
                     if(res.data.status===200){
                         dispatch(userLoggedInDetails(res.data.user));
                     }
