@@ -14,11 +14,13 @@ const headings = [
 const appDownloadLink = [
     {
         icon:"/playStore.png",
-        alt:"Google Play"
+        alt:"Google Play",
+        href:"https://play.google.com/store/apps/details?id=com.jio.media.ondemand"
     },
     {
         icon:"/appleStore.png",
-        alt:"Apple Play"
+        alt:"Apple Play",
+        href:"https://apps.apple.com/in/app/jiocinema-movies-tv-sports/id1067318593"
     }
 ];
 const connectWithUsLink = [
@@ -84,7 +86,10 @@ export default function Footer() {
                         </h3>
                     <div className="flex gap-4 ">
                         {appDownloadLink.map((link, linkIndex) => (
-                    <Link key={linkIndex} href="#" className="flex items-center">
+                    <Link key={linkIndex} className="flex items-center"   
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer">
                         <div className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] flex items-center justify-center bg-white rounded-lg overflow-hidden">
                         <Image
                         src={link.icon}
